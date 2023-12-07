@@ -1,6 +1,13 @@
 name: Debricked scan
 
-on: [push, pull_request_target, pull_request, workflow_call]
+on: 
+  push:
+  pull_request_target: 
+  pull_request: 
+  workflow_call:
+    secrets:
+      DEBRICKED_TOKEN:
+        required: true
 
 jobs:
   test:
