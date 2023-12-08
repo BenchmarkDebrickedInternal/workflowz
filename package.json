@@ -1,0 +1,7 @@
+{
+    "dependencies": {
+        "webpack-dev-server": "3.9.0"
+    },
+    "private": true,
+    "version": "3.0.0"
+}
