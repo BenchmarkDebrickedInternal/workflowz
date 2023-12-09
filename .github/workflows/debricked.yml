@@ -1,13 +1,6 @@
 name: Debricked scan
 
-on: 
-  push:
-  pull_request_target: 
-  pull_request: 
-  workflow_call:
-    secrets:
-      DEBRICKED_TOKEN:
-        required: true
+on: [push, pull_request_target, pull_request, workflow_call]
 
 jobs:
   test:
@@ -24,8 +17,9 @@ jobs:
             ~/.gradle/wrapper
             ~/.cache/pip
           key: ${{ runner.os }}-debricked-resolution--${{ steps.get-date.outputs.date }}
-          DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
       - name: Install Debricked CLI
         run: curl -L https://github.com/debricked/cli/releases/latest/download/cli_linux_x86_64.tar.gz | tar -xz debricked
       - name: debricked scan
         run: ./debricked scan
+        env:
+          DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
